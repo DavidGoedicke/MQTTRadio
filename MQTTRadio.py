@@ -4,14 +4,20 @@ import sys
 import threading, queue
 import paho.mqtt.client as mqtt
 import re
+import pyttsx3
+import importlib
 
 topic = "bbc/subtitles/bbc_news24/raw"
 
 q = queue.Queue()
 running = True
 def say(text):
+    # Workaround because runAndWait() sometimes hangs on windows
+    importlib.reload(pyttsx3)
+    engine = pyttsx3.init()
+    engine.say(text)
     print(str(text))
-    system('say '+str(text))
+    engine.runAndWait()
 
 def worker():
     sentence=" "
