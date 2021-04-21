@@ -7,7 +7,7 @@ import re
 import pyttsx3
 import importlib
 
-topic = "bbc/subtitles/bbc_news24/raw"
+topic = "bbc/subtitles/bbc_news24/compacted"
 
 q = queue.Queue()
 running = True
@@ -59,5 +59,5 @@ def signal_handler(sig, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 print("About to connect")
-client.connect("mqtt.eclipse.org", 1883, 60)
+client.connect("mqtt.eclipseprojects.io", 1883, 60)
 client.loop_forever()
